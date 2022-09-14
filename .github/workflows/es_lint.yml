@@ -19,12 +19,11 @@
 
 name: es lint
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
+    paths:
+      - paas-dashboard-portal-react
 jobs:
   es_lint:
     runs-on: ubuntu-latest

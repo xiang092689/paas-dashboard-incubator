@@ -17,18 +17,23 @@
 # under the License.
 #
 
-name: rust clippy
+name: checkstyle
 on:
   pull_request:
     branches:
       - main
     paths:
-      - paas-dashboard-rust
+      - paas-dashboard-java
 
 jobs:
-  clippy_check:
+  checkstyle:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: rustup component add clippy
-      - run: cd paas-dashboard-rust && cargo clippy --all-features
+      - name: Set up Maven Central Repository
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: checkstyle
+        run: cd paas-dashboard-java && mvn -B clean checkstyle:check
