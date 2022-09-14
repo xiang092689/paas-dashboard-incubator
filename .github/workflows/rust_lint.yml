@@ -16,6 +16,7 @@
 # specific language governing permissions and limitations
 # under the License.
 #
+
 name: rust clippy
 on:
   push:
@@ -30,8 +31,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: rustup component add clippy
-      - run: cd paas-dashboard-rust
-      - uses: actions-rs/clippy-check@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          args: --all-features
+      - run: cd paas-dashboard-rust && cargo clippy --all-features

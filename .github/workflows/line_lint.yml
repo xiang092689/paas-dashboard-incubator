@@ -17,18 +17,16 @@
 # under the License.
 #
 
-header:
-  license:
-    spdx-id: Apache-2.0
-    copyright-owner: Apache Software Foundation
-  paths-ignore:
-    - '**/*.md'
-    - 'LICENSE'
-    - '.gitignore'
-    ## cpp
-    - '**/CMakeLists.txt'
-    ## js
-    - '**/*.json'
-    - '**/.prettierrc'
-    ## rust
-    - '**/Cargo.lock'
+name: line lint
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    name: line lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: linelint
+        uses: fernandrone/linelint@master

@@ -17,18 +17,12 @@
 # under the License.
 #
 
-header:
-  license:
-    spdx-id: Apache-2.0
-    copyright-owner: Apache Software Foundation
-  paths-ignore:
-    - '**/*.md'
-    - 'LICENSE'
-    - '.gitignore'
-    ## cpp
-    - '**/CMakeLists.txt'
-    ## js
-    - '**/*.json'
-    - '**/.prettierrc'
-    ## rust
-    - '**/Cargo.lock'
+autofix: false
+
+ignore:
+  - .git/
+
+rules:
+  end-of-file:
+    enable: true
+    single-new-line: true

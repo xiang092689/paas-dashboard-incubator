@@ -17,18 +17,21 @@
 # under the License.
 #
 
-header:
-  license:
-    spdx-id: Apache-2.0
-    copyright-owner: Apache Software Foundation
-  paths-ignore:
-    - '**/*.md'
-    - 'LICENSE'
-    - '.gitignore'
-    ## cpp
-    - '**/CMakeLists.txt'
-    ## js
-    - '**/*.json'
-    - '**/.prettierrc'
-    ## rust
-    - '**/Cargo.lock'
+name: es lint
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  es_lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: latest
+      - run: npm install -g eslint
+      - run: cd paas-dashboard-portal-react && npm install && eslint src --ext .html,.js
