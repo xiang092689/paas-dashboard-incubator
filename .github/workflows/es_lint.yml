@@ -23,7 +23,7 @@ on:
     branches:
       - main
     paths:
-      - paas-dashboard-portal-react
+      - paas-dashboard-portal-react/**
 jobs:
   es_lint:
     runs-on: ubuntu-latest

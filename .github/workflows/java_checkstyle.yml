@@ -23,7 +23,7 @@ on:
     branches:
       - main
     paths:
-      - paas-dashboard-java
+      - paas-dashboard-java/**
 
 jobs:
   checkstyle:
