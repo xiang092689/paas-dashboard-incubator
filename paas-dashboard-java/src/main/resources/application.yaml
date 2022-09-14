@@ -17,26 +17,5 @@
 # under the License.
 #
 
-header:
-  license:
-    spdx-id: Apache-2.0
-    copyright-owner: Apache Software Foundation
-  paths-ignore:
-    - '**/*.md'
-    - 'LICENSE'
-    - '.gitignore'
-    ## cpp
-    - '**/CMakeLists.txt'
-    ## flutter
-    - 'paas_dashboard_portal_flutter/lib/l10n/**'
-    - 'paas_dashboard_portal_flutter/macos/**'
-    - 'paas_dashboard_portal_flutter/linux/**'
-    - 'paas_dashboard_portal_flutter/windows/**'
-    - 'paas_dashboard_portal_flutter/web/**'
-    - 'paas_dashboard_portal_flutter/pubspec.lock'
-    - 'paas_dashboard_portal_flutter/.metadata'
-    ## js
-    - '**/*.json'
-    - '**/.prettierrc'
-    ## rust
-    - '**/Cargo.lock'
+server:
+  port: 9527
