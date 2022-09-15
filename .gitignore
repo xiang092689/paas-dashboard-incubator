@@ -4,4 +4,5 @@
 # ide
 .idea/**
 
+dist-flutter-java/**
 dist-react-rust/**

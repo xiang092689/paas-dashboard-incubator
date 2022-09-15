@@ -17,25 +17,8 @@
 # under the License.
 #
 
-name: Flutter Format
+FROM ttbb/base:jdk17
 
-on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - paas_dashboard_portal_flutter/**
+COPY dist-flutter-java /opt/paas-dashboard
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: paas_dashboard_portal_flutter
-    steps:
-      - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-      - run: flutter pub get
-      - run: flutter format --set-exit-if-changed -l 120 .
+CMD ["/usr/bin/dumb-init", "bash", "-vx","/opt/paas-dashboard/scripts/start.sh"]
