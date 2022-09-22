@@ -19,9 +19,8 @@
 
 package com.paas.dashboard.service;
 
-import com.paas.dashboard.module.pulsar.PulsarUpdateBacklogQuotaReq;
 import com.paas.dashboard.module.pulsar.PulsarAutoTopicCreationReq;
-
+import com.paas.dashboard.module.pulsar.PulsarUpdateBacklogQuotaReq;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pulsar.client.admin.PulsarAdmin;
 import org.apache.pulsar.client.api.PulsarClientException;
@@ -30,15 +29,15 @@ import org.apache.pulsar.common.policies.data.Policies;
 import org.apache.pulsar.common.policies.data.TenantInfo;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
 import java.util.List;
-import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 @Slf4j
 public class PulsarAdminService {
 
-    private final Map<String, PulsarAdmin> pulsarAdminMap = new HashMap<>();
+    private final Map<String, PulsarAdmin> pulsarAdminMap = new ConcurrentHashMap<>();
 
     public List<String> fetchTenants(String id) throws Exception {
         return null;
