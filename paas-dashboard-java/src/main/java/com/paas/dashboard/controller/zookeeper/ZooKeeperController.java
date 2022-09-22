@@ -20,7 +20,6 @@
 package com.paas.dashboard.controller.zookeeper;
 
 import com.paas.dashboard.module.zookeeper.ZnodeMetric;
-import com.paas.dashboard.module.zookeeper.ZooKeeperInstanceMetric;
 import com.paas.dashboard.service.ZookeeperService;
 import jakarta.ws.rs.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;

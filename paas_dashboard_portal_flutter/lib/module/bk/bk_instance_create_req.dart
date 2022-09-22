@@ -17,28 +17,26 @@
 // under the License.
 //
 
-import 'package:paas_dashboard_portal_flutter/module/http_endpoint.dart';
+class BkInstanceCreateReq {
+  final String name;
 
-class ZkInstanceDto extends HttpEndpoint {
-  final int id;
+  final String zooKeeperAddr;
 
-  ZkInstanceDto(this.id, String name, String host, int port) : super(name, host, port);
+  BkInstanceCreateReq(this.name, this.zooKeeperAddr);
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'name': name,
-      'host': host,
-      'port': port,
+      'zooKeeperAddr': zooKeeperAddr,
     };
   }
 
-  static Set<String> fieldList() {
-    return {'id', 'name', 'host', 'port'};
+  static List<String> fieldList() {
+    return ['name', 'zooKeeperAddr'];
   }
 
   @override
   String toString() {
-    return 'ZooKeeperInstance{id: $id, name: $name, host: $host, port: $port}';
+    return 'BookkeeperInstance{name: $name, zooKeeperAddr: $zooKeeperAddr}';
   }
 }

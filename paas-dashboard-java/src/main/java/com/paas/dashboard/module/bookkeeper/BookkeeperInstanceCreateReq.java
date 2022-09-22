@@ -30,6 +30,6 @@ public class BookkeeperInstanceCreateReq {
 
     private String name;
 
-    private String zookeeperAddr;
+    private String zooKeeperAddr;
 
 }

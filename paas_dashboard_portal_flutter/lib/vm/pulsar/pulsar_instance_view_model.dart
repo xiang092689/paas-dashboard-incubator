@@ -23,7 +23,7 @@ import 'package:paas_dashboard_portal_flutter/api/pulsar/pulsar_namespace_api.da
 import 'package:paas_dashboard_portal_flutter/api/pulsar/pulsar_partitioned_topic_api.dart';
 import 'package:paas_dashboard_portal_flutter/api/pulsar/pulsar_tenant_api.dart';
 import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_form_dto.dart';
-import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_instance_dto.dart';
 import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_namespace.dart';
 import 'package:paas_dashboard_portal_flutter/util/common_utils.dart';
 import 'package:paas_dashboard_portal_flutter/vm/base_load_list_page_view_model.dart';

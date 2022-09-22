@@ -18,7 +18,7 @@
 //
 
 import 'package:paas_dashboard_portal_flutter/module/mysql/const.dart';
-import 'package:paas_dashboard_portal_flutter/module/mysql/mysql_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/mysql/mysql_instance_dto.dart';
 
 class MysqlInstanceApi {
   static Future<void> saveMysql(String name, String host, int port, String username, String password) async {

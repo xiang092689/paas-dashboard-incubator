@@ -30,7 +30,7 @@ class BkInstanceApi {
   }
 
   static Future<List<BkInstanceDto>> bookkeeperInstances() async {
-    return [BkInstanceDto(0, "example", BkConst.defaultHost, BkConst.defaultPort)];
+    return [BkInstanceDto(0, "example", BkConst.defaultZooKeeperAddr)];
   }
 
   static Future<BkInstanceDto?> bookkeeperInstance(String name) async {

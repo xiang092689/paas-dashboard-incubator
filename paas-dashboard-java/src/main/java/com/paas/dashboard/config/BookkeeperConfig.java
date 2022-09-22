@@ -31,13 +31,13 @@ import java.util.UUID;
 @NoArgsConstructor
 public class BookkeeperConfig extends BaseConfig {
 
-    private String zookeeperAddr;
+    private String zooKeeperAddr;
 
     public static BookkeeperConfig genFromReq(BookkeeperInstanceCreateReq req) {
         BookkeeperConfig config = new BookkeeperConfig();
         config.setId(UUID.randomUUID().toString());
         config.setName(req.getName());
-        config.setZookeeperAddr(req.getZookeeperAddr());
+        config.setZooKeeperAddr(req.getZooKeeperAddr());
         return config;
     }
 

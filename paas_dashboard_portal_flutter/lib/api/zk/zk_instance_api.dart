@@ -18,7 +18,7 @@
 //
 
 import 'package:paas_dashboard_portal_flutter/module/zk/const.dart';
-import 'package:paas_dashboard_portal_flutter/module/zk/zk_instance_po.dart';
+import 'package:paas_dashboard_portal_flutter/module/zk/zk_instance_dto.dart';
 
 class ZkInstanceApi {
   static Future<void> saveZooKeeper(String name, String host, int port) async {
@@ -30,7 +30,7 @@ class ZkInstanceApi {
   }
 
   static Future<List<ZkInstanceDto>> zooKeeperInstances() async {
-    return [ZkInstanceDto(0, "example", ZkConst.defaultHost, ZkConst.defaultPort)];
+    return [ZkInstanceDto(0, "example", ZkConst.defaultZooKeeperAddr)];
   }
 
   static Future<ZkInstanceDto?> zooKeeperInstance(String name) async {

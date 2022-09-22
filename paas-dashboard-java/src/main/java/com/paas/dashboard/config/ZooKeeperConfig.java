@@ -31,13 +31,13 @@ import java.util.UUID;
 @NoArgsConstructor
 public class ZooKeeperConfig extends BaseConfig {
 
-    private String zookeeperAddr;
+    private String zooKeeperAddr;
 
     public static ZooKeeperConfig genFromReq(ZooKeeperInstanceCreateReq req) {
         ZooKeeperConfig config = new ZooKeeperConfig();
         config.setId(UUID.randomUUID().toString());
         config.setName(req.getName());
-        config.setZookeeperAddr(req.getZookeeperAddr());
+        config.setZooKeeperAddr(req.getZooKeeperAddr());
         return config;
     }
 }

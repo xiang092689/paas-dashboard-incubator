@@ -17,15 +17,29 @@
 // under the License.
 //
 
-class HttpEndpoint {
-  final String name;
-  final String host;
-  final int port;
+class ZkInstanceDto {
+  final int id;
 
-  HttpEndpoint(this.name, this.host, this.port);
+  final String name;
+
+  final String zooKeeperAddr;
+
+  ZkInstanceDto(this.id, this.name, this.zooKeeperAddr);
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'zooKeeperAddr': zooKeeperAddr,
+    };
+  }
+
+  static List<String> fieldList() {
+    return ['id', 'name', 'zooKeeperAddr'];
+  }
 
   @override
   String toString() {
-    return 'HttpEndpoint{name: $name, host: $host, port: $port}';
+    return 'ZooKeeperInstance{id: $id, name: $name, zooKeeperAddr: $zooKeeperAddr}';
   }
 }

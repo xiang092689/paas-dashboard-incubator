@@ -32,11 +32,7 @@ class BkInstanceViewModel {
     return bkInstancePo.name;
   }
 
-  String get host {
-    return bkInstancePo.host;
-  }
-
-  int get port {
-    return bkInstancePo.port;
+  String get zooKeeperAddr {
+    return bkInstancePo.zooKeeperAddr;
   }
 }

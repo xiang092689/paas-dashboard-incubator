@@ -73,16 +73,14 @@ class _BkPageState extends State<BkPage> {
             columns: const [
               DataColumn(label: Text('Id')),
               DataColumn(label: Text('Name')),
-              DataColumn(label: Text('Address')),
-              DataColumn(label: Text('Port')),
+              DataColumn(label: Text('ZooKeeperAddr')),
               DataColumn(label: Text('Delete instance')),
             ],
             rows: vm.instances
                 .map((itemRow) => DataRow(onSelectChanged: (bool? selected) {}, cells: [
                       DataCell(Text(itemRow.id.toString())),
                       DataCell(Text(itemRow.name)),
-                      DataCell(Text(itemRow.host)),
-                      DataCell(Text(itemRow.port.toString())),
+                      DataCell(Text(itemRow.zooKeeperAddr)),
                       DataCellUtil.newDelDataCell(() {
                         vm.deleteBk(itemRow.id);
                       }),

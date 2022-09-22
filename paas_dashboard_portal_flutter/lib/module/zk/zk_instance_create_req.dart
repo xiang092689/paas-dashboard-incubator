@@ -17,23 +17,26 @@
 // under the License.
 //
 
-import 'package:paas_dashboard_portal_flutter/module/redis/const.dart';
-import 'package:paas_dashboard_portal_flutter/module/redis/redis_instance_dto.dart';
+class ZkInstanceCreateReq {
+  final String name;
 
-class RedisInstanceApi {
-  static Future<void> saveRedis(String name, String addr, String username, String password) async {
-    throw UnimplementedError();
+  final String zooKeeperAddr;
+
+  ZkInstanceCreateReq(this.zooKeeperAddr, this.name);
+
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'zooKeeperAddr': zooKeeperAddr,
+    };
   }
 
-  static Future<void> deleteRedis(int id) async {
-    throw UnimplementedError();
+  static List<String> fieldList() {
+    return ['name', 'zooKeeperAddr'];
   }
 
-  static Future<List<RedisInstanceDto>> redisInstances() async {
-    return [RedisInstanceDto(0, "example", RedisConst.defaultIp, RedisConst.defaultPort, RedisConst.defaultPassword)];
-  }
-
-  static Future<RedisInstanceDto?> redisInstance(String name) async {
-    throw UnimplementedError();
+  @override
+  String toString() {
+    return 'ZooKeeperInstance{name: $name, zooKeeperAddr: $zooKeeperAddr}';
   }
 }

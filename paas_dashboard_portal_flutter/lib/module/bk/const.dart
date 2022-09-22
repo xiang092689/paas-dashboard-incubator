@@ -18,6 +18,7 @@
 //
 
 class BkConst {
+  static const String defaultZooKeeperAddr = "localhost:2181";
   static const String defaultHost = "localhost";
   static const int defaultPort = 8080;
 }
