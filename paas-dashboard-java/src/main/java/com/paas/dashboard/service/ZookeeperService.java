@@ -19,9 +19,13 @@
 
 package com.paas.dashboard.service;
 
+import com.paas.dashboard.config.ZooKeeperConfig;
 import com.paas.dashboard.module.zookeeper.ZnodeMetric;
 import com.paas.dashboard.module.zookeeper.ZooKeeperInstanceMetric;
+import com.paas.dashboard.storage.StorageZooKeeper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.zookeeper.ZooKeeper;
+import org.apache.zookeeper.data.Stat;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -36,7 +40,38 @@ public class ZookeeperService {
 
     private final Map<String, ZooKeeperInstanceMetric> zookeeperInstanceMetrics = new ConcurrentHashMap<>();
 
-    public void nodeAnalysis(String id) throws Exception {
+    public void instanceAnalyze(String id) throws Exception {
+        ZooKeeperConfig config = StorageZooKeeper.getInstance().getConfig(id);
+        try (
+                ZooKeeper zk = new ZooKeeper(config.getZooKeeperAddr(), 15_000, null)
+        ) {
+            List<String> children = zk.getChildren("/", null);
+            List<String> result = new ArrayList<>(children);
+            traversal(result, children, zk);
+            List<ZnodeMetric> znodeMetrics = new ArrayList<>();
+            long sum = 0;
+            long maxDataSize = 0;
+            for (String znodePath : result) {
+                Stat stat = zk.exists(znodePath, null);
+                maxDataSize = Math.max(maxDataSize, stat.getDataLength());
+                sum += stat.getDataLength();
+                znodeMetrics.add(new ZnodeMetric(znodePath, stat.getDataLength()));
+            }
+            long avg = sum / result.size();
+            zookeeperInstanceMetrics.put(id,
+                    new ZooKeeperInstanceMetric(result.size(), maxDataSize, avg, znodeMetrics));
+        }
+    }
+
+    private void traversal(List<String> result, List<String> paths, ZooKeeper zk) throws Exception {
+        if (paths.size() == 0) {
+            return;
+        }
+        for (String path : paths) {
+            List<String> children = zk.getChildren(path, null);
+            result.addAll(children);
+            traversal(result, children, zk);
+        }
     }
 
     public Optional<List<ZnodeMetric>> getTopNodes(String id, String type) {

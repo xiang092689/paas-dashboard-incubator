@@ -43,7 +43,7 @@ public class ZooKeeperController {
 
     @PostMapping("/instance/{id}/analyze")
     public void nodeAnalysis(@PathVariable("id") String id) throws Exception {
-        zookeeperService.nodeAnalysis(id);
+        zookeeperService.instanceAnalyze(id);
     }
 
     @GetMapping("/instance/{id}/statistics/top")
