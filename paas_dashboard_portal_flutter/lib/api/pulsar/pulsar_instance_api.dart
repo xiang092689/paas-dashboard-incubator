@@ -43,12 +43,12 @@ class PulsarInstanceApi {
     var createReq = PulsarInstanceCreateReq(name, host, port, functionHost, functionPort, enableTls, functionEnableTls,
         caFile, clientCertFile, clientKeyFile, clientKeyPassword);
     var body = json.encode(createReq.toMap());
-    var res = await http.post(url, headers: {"Content-Type": "application/json"}, body: body);
+    var res = await http.put(url, headers: {"Content-Type": "application/json"}, body: body);
     print("pulsar save ret : ${res.body}");
   }
 
   static Future<void> updatePulsar(
-      int id,
+      String id,
       String name,
       String host,
       int port,
@@ -63,14 +63,14 @@ class PulsarInstanceApi {
     throw UnimplementedError();
   }
 
-  static Future<void> deletePulsar(int id) async {
+  static Future<void> deletePulsar(String id) async {
     throw UnimplementedError();
   }
 
   static Future<List<PulsarInstanceDto>> pulsarInstances() async {
     return [
       PulsarInstanceDto(
-          0,
+          "0",
           "example",
           PulsarConst.defaultHost,
           PulsarConst.defaultBrokerPort,

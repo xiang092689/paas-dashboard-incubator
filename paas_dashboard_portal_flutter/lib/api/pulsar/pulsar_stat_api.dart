@@ -24,7 +24,7 @@ import 'package:paas_dashboard_portal_flutter/api/tls_context.dart';
 
 class PulsarStatApi {
   static Future<String> partitionedTopicStats(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     var url = '$protocol$host:${port.toString()}/admin/v2/persistent/$tenant/$namespace/$topic/partitioned-stats';
     var response = await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id).get<String>(url);
@@ -36,7 +36,7 @@ class PulsarStatApi {
   }
 
   static Future<String> topicStats(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     var url = '$protocol$host:${port.toString()}/admin/v2/persistent/$tenant/$namespace/$topic/stats';
     var response = await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id).get<String>(url);

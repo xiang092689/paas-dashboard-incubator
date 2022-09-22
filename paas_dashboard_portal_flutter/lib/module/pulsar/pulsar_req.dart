@@ -18,7 +18,7 @@
 //
 
 class PulsarReq {
-  final int id;
+  final String id;
   final String serviceUrl;
   final Map<String, dynamic> tlsContextDto;
 

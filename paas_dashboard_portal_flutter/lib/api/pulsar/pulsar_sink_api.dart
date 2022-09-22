@@ -26,8 +26,8 @@ import 'package:paas_dashboard_portal_flutter/api/tls_context.dart';
 import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_sink.dart';
 
 class PulsarSinkApi {
-  static Future<void> createSink(int id, String host, int port, TlsContext tlsContext, String tenant, String namespace,
-      String sinkName, String subName, String inputTopic, String sinkType, String config) async {
+  static Future<void> createSink(String id, String host, int port, TlsContext tlsContext, String tenant,
+      String namespace, String sinkName, String subName, String inputTopic, String sinkType, String config) async {
     String url = tlsContext.enableTls
         ? HttpUtil.https
         : '${HttpUtil.http}$host:${port.toString()}/admin/v3/sinks/$tenant/$namespace/$sinkName';
@@ -39,7 +39,7 @@ class PulsarSinkApi {
   }
 
   static Future<void> deleteSink(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String sinkName) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String sinkName) async {
     var url = tlsContext.enableTls
         ? HttpUtil.https
         : '${HttpUtil.http}$host:${port.toString()}/admin/v3/sinks/$tenant/$namespace/$sinkName';
@@ -51,7 +51,7 @@ class PulsarSinkApi {
   }
 
   static Future<List<SinkResp>> getSinkList(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace) async {
     var url = tlsContext.enableTls
         ? HttpUtil.https
         : '${HttpUtil.http}$host:${port.toString()}/admin/v3/sinks/$tenant/$namespace';
@@ -65,7 +65,7 @@ class PulsarSinkApi {
   }
 
   static Future<SinkConfigResp> getSink(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String sinkName) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String sinkName) async {
     var url = tlsContext.enableTls
         ? HttpUtil.https
         : '${HttpUtil.http}$host:${port.toString()}/admin/v3/sinks/$tenant/$namespace/$sinkName';

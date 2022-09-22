@@ -40,7 +40,7 @@ class PulsarSourceBasicViewModel extends BaseLoadViewModel {
         pulsarInstancePo.deepCopy(), tenantResp.deepCopy(), namespaceResp.deepCopy(), sourceResp.deepCopy());
   }
 
-  int get id {
+  String get id {
     return pulsarInstancePo.id;
   }
 

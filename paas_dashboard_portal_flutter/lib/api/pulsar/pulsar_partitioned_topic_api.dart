@@ -34,7 +34,7 @@ import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_topic.dart';
 import 'package:paas_dashboard_portal_flutter/ui/util/string_util.dart';
 
 class PulsarPartitionedTopicApi {
-  static Future<String> createPartitionTopic(int id, String host, int port, TlsContext tlsContext, String tenant,
+  static Future<String> createPartitionTopic(String id, String host, int port, TlsContext tlsContext, String tenant,
       String namespace, String topic, int partitionNum) async {
     var url = tlsContext.enableTls
         ? HttpUtil.https
@@ -48,7 +48,7 @@ class PulsarPartitionedTopicApi {
     return response.data!;
   }
 
-  static Future<String> deletePartitionTopic(int id, String host, int port, TlsContext tlsContext, String tenant,
+  static Future<String> deletePartitionTopic(String id, String host, int port, TlsContext tlsContext, String tenant,
       String namespace, String topic, bool force) async {
     var url = tlsContext.enableTls
         ? HttpUtil.https
@@ -61,7 +61,7 @@ class PulsarPartitionedTopicApi {
     return response.data!;
   }
 
-  static Future<String> modifyPartitionTopic(int id, String host, int port, TlsContext tlsContext, String tenant,
+  static Future<String> modifyPartitionTopic(String id, String host, int port, TlsContext tlsContext, String tenant,
       String namespace, String topic, int partitionNum) async {
     var url = tlsContext.enableTls
         ? HttpUtil.https
@@ -76,7 +76,7 @@ class PulsarPartitionedTopicApi {
   }
 
   static Future<String> createMissPartitionTopic(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
     var url = tlsContext.enableTls
         ? HttpUtil.https
         : '${HttpUtil.http}$host:${port.toString()}/admin/v2/persistent/$tenant/$namespace/$topic/createMissedPartitions';
@@ -89,7 +89,7 @@ class PulsarPartitionedTopicApi {
   }
 
   static Future<List<TopicResp>> getTopics(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace) async {
     var url = tlsContext.enableTls
         ? HttpUtil.https
         : '${HttpUtil.http}$host:${port.toString()}/admin/v2/persistent/$tenant/$namespace/partitioned';
@@ -103,7 +103,7 @@ class PulsarPartitionedTopicApi {
   }
 
   static Future<List<SubscriptionResp>> getSubscription(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
     String data = "";
     await PulsarStatApi.partitionedTopicStats(id, host, port, tlsContext, tenant, namespace, topic)
         .then((value) => {data = value});
@@ -121,7 +121,7 @@ class PulsarPartitionedTopicApi {
     return respList;
   }
 
-  static Future<String> clearBacklog(int id, String host, int port, TlsContext tlsContext, String tenant,
+  static Future<String> clearBacklog(String id, String host, int port, TlsContext tlsContext, String tenant,
       String namespace, String topic, String subscription) async {
     var url = tlsContext.enableTls
         ? HttpUtil.https
@@ -134,7 +134,7 @@ class PulsarPartitionedTopicApi {
     return response.data!;
   }
 
-  static Future<String> getSubscriptionBacklog(int id, String host, int port, TlsContext tlsContext, String tenant,
+  static Future<String> getSubscriptionBacklog(String id, String host, int port, TlsContext tlsContext, String tenant,
       String namespace, String topic, String subscription) async {
     String data = PulsarStatApi.partitionedTopicStats(id, host, port, tlsContext, tenant, namespace, topic) as String;
 
@@ -151,7 +151,7 @@ class PulsarPartitionedTopicApi {
   }
 
   static Future<List<ConsumerResp>> getConsumers(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
     String data = "";
     await PulsarStatApi.partitionedTopicStats(id, host, port, tlsContext, tenant, namespace, topic)
         .then((value) => {data = value});
@@ -208,7 +208,7 @@ class PulsarPartitionedTopicApi {
   }
 
   static Future<List<ProducerResp>> getProducers(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
     String data = "";
     await PulsarStatApi.partitionedTopicStats(id, host, port, tlsContext, tenant, namespace, topic)
         .then((value) => {data = value});
@@ -232,7 +232,7 @@ class PulsarPartitionedTopicApi {
   }
 
   static Future<List<PulsarPartitionedTopicDetailResp>> getDetails(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
     String data = "";
     await PulsarStatApi.partitionedTopicStats(id, host, port, tlsContext, tenant, namespace, topic)
         .then((value) => {data = value});
@@ -250,7 +250,7 @@ class PulsarPartitionedTopicApi {
   }
 
   static Future<PulsarPartitionedTopicBaseResp> getBase(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
     String data = "";
     await PulsarStatApi.partitionedTopicStats(id, host, port, tlsContext, tenant, namespace, topic)
         .then((value) => {data = value});
@@ -287,7 +287,7 @@ class PulsarPartitionedTopicApi {
         topicName, partitionNum, msgRateIn, msgRateOut, msgInCounter, msgOutCounter, storageSize);
   }
 
-  static Future<String> sendMsgToPartitionTopic(int id, String host, int port, TlsContext tlsContext, String tenant,
+  static Future<String> sendMsgToPartitionTopic(String id, String host, int port, TlsContext tlsContext, String tenant,
       String namespace, String topic, String key, String value) async {
     ProducerMessage producerMessage = ProducerMessage(key, value);
     List<ProducerMessage> messageList = List.empty(growable: true);

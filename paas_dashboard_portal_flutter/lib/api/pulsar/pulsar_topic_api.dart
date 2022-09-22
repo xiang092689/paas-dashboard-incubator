@@ -35,7 +35,7 @@ import 'package:paas_dashboard_portal_flutter/ui/util/string_util.dart';
 
 class PulsarTopicApi {
   static Future<String> createTopic(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
     var url = tlsContext.enableTls
         ? HttpUtil.https
         : '${HttpUtil.http}$host:${port.toString()}/admin/v2/persistent/$tenant/$namespace/$topic';
@@ -47,7 +47,7 @@ class PulsarTopicApi {
     return response.data!;
   }
 
-  static Future<String> deleteTopic(int id, String host, int port, TlsContext tlsContext, String tenant,
+  static Future<String> deleteTopic(String id, String host, int port, TlsContext tlsContext, String tenant,
       String namespace, String topic, bool force) async {
     var url = tlsContext.enableTls
         ? HttpUtil.https
@@ -61,7 +61,7 @@ class PulsarTopicApi {
   }
 
   static Future<List<TopicResp>> getTopics(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace) async {
     var url = tlsContext.enableTls
         ? HttpUtil.https
         : '${HttpUtil.http}$host:${port.toString()}/admin/v2/persistent/$tenant/$namespace';
@@ -75,7 +75,7 @@ class PulsarTopicApi {
   }
 
   static Future<List<SubscriptionResp>> getSubscription(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
     String data = "";
     await PulsarStatApi.topicStats(id, host, port, tlsContext, tenant, namespace, topic)
         .then((value) => {data = value});
@@ -93,7 +93,7 @@ class PulsarTopicApi {
     return respList;
   }
 
-  static Future<String> fetchConsumerMessage(int id, String host, int port, TlsContext tlsContext, String tenant,
+  static Future<String> fetchConsumerMessage(String id, String host, int port, TlsContext tlsContext, String tenant,
       String namespace, String topic, String ledgerId, String entryId) async {
     var url = tlsContext.enableTls
         ? HttpUtil.https
@@ -106,7 +106,7 @@ class PulsarTopicApi {
     return response.data!;
   }
 
-  static Future<String> fetchMessageId(int id, String host, int port, TlsContext tlsContext, String tenant,
+  static Future<String> fetchMessageId(String id, String host, int port, TlsContext tlsContext, String tenant,
       String namespace, String topic, String timestamp) async {
     var url = tlsContext.enableTls
         ? HttpUtil.https
@@ -119,7 +119,7 @@ class PulsarTopicApi {
     return response.data!;
   }
 
-  static Future<String> clearBacklog(int id, String host, int port, TlsContext tlsContext, String tenant,
+  static Future<String> clearBacklog(String id, String host, int port, TlsContext tlsContext, String tenant,
       String namespace, String topic, String subscription) async {
     var url = tlsContext.enableTls
         ? HttpUtil.https
@@ -132,7 +132,7 @@ class PulsarTopicApi {
     return response.data!;
   }
 
-  static Future<String> getSubscriptionBacklog(int id, String host, int port, TlsContext tlsContext, String tenant,
+  static Future<String> getSubscriptionBacklog(String id, String host, int port, TlsContext tlsContext, String tenant,
       String namespace, String topic, String subscription) async {
     String data = PulsarStatApi.topicStats(id, host, port, tlsContext, tenant, namespace, topic) as String;
 
@@ -149,7 +149,7 @@ class PulsarTopicApi {
   }
 
   static Future<List<ConsumerResp>> getConsumers(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
     String data = "";
     await PulsarStatApi.topicStats(id, host, port, tlsContext, tenant, namespace, topic)
         .then((value) => {data = value});
@@ -206,7 +206,7 @@ class PulsarTopicApi {
   }
 
   static Future<List<ProducerResp>> getProducers(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
     String data = "";
     await PulsarStatApi.topicStats(id, host, port, tlsContext, tenant, namespace, topic)
         .then((value) => {data = value});
@@ -230,7 +230,7 @@ class PulsarTopicApi {
   }
 
   static Future<PulsarTopicBaseResp> getBase(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
     String data = "";
     await PulsarStatApi.topicStats(id, host, port, tlsContext, tenant, namespace, topic)
         .then((value) => {data = value});
@@ -268,7 +268,7 @@ class PulsarTopicApi {
   }
 
   static Future<String> getBrokerUrl(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
     String data = "";
     await PulsarLookupApi.lookupTopic(id, host, port, tlsContext, tenant, namespace, topic)
         .then((value) => {data = value});
@@ -280,8 +280,8 @@ class PulsarTopicApi {
     return "";
   }
 
-  static Future<String> sendMsg(int id, String host, int port, TlsContext tlsContext, String tenant, String namespace,
-      String topic, String partition, key, value) async {
+  static Future<String> sendMsg(String id, String host, int port, TlsContext tlsContext, String tenant,
+      String namespace, String topic, String partition, key, value) async {
     ProducerMessage producerMessage = ProducerMessage(key, value);
     List<ProducerMessage> messageList = List.empty(growable: true);
     messageList.add(producerMessage);

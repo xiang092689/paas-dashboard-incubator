@@ -28,7 +28,7 @@ import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_namespace.dar
 
 class PulsarNamespaceApi {
   static Future<void> createNamespace(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     var url = '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace';
     var response = await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id).put<String>(url);
@@ -39,7 +39,7 @@ class PulsarNamespaceApi {
   }
 
   static Future<void> deleteNamespace(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     var url = '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace';
     var response = await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id).delete<String>(url);
@@ -50,7 +50,7 @@ class PulsarNamespaceApi {
   }
 
   static Future<List<NamespaceResp>> getNamespaces(
-      int id, String host, int port, TlsContext tlsContext, String tenant) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     var url = '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant';
     var response = await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id).get<String>(url);
@@ -63,7 +63,7 @@ class PulsarNamespaceApi {
   }
 
   static Future<BacklogQuotaResp> getBacklogQuota(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     String url = '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace/backlogQuotaMap';
     var response = await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id).get<String>(url);
@@ -79,7 +79,7 @@ class PulsarNamespaceApi {
     return BacklogQuotaResp.fromJson(destinationStorageResp);
   }
 
-  static Future<void> updateBacklogQuota(int id, String host, int port, TlsContext tlsContext, String tenant,
+  static Future<void> updateBacklogQuota(String id, String host, int port, TlsContext tlsContext, String tenant,
       String namespace, int limit, int? limitTime, String policy) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     String url = '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace/backlogQuota';
@@ -93,7 +93,7 @@ class PulsarNamespaceApi {
   }
 
   static Future<PolicyResp> getPolicy(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     String url = '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace';
     var response = await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id).get<String>(url);
@@ -105,7 +105,7 @@ class PulsarNamespaceApi {
     return PolicyResp.fromJson(jsonResponse);
   }
 
-  static Future<void> setAutoTopicCreation(int id, String host, int port, TlsContext tlsContext, String tenant,
+  static Future<void> setAutoTopicCreation(String id, String host, int port, TlsContext tlsContext, String tenant,
       String namespace, bool? allowAutoTopicCreation, String? topicType, int? defaultNumPartitions) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     String url = '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace/autoTopicCreation';
@@ -118,7 +118,7 @@ class PulsarNamespaceApi {
     }
   }
 
-  static Future<void> setMessageTTLSecond(int id, String host, int port, TlsContext tlsContext, String tenant,
+  static Future<void> setMessageTTLSecond(String id, String host, int port, TlsContext tlsContext, String tenant,
       String namespace, int? messageTTLSecond) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     String url = '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace/messageTTL';
@@ -129,7 +129,7 @@ class PulsarNamespaceApi {
     }
   }
 
-  static Future<void> setMaxProducersPerTopic(int id, String host, int port, TlsContext tlsContext, String tenant,
+  static Future<void> setMaxProducersPerTopic(String id, String host, int port, TlsContext tlsContext, String tenant,
       String namespace, int? maxProducersPerTopic) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     String url = '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace/maxProducersPerTopic';
@@ -141,7 +141,7 @@ class PulsarNamespaceApi {
     }
   }
 
-  static Future<void> setMaxConsumersPerTopic(int id, String host, int port, TlsContext tlsContext, String tenant,
+  static Future<void> setMaxConsumersPerTopic(String id, String host, int port, TlsContext tlsContext, String tenant,
       String namespace, int? maxConsumersPerTopic) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     String url = '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace/maxConsumersPerTopic';
@@ -153,7 +153,7 @@ class PulsarNamespaceApi {
     }
   }
 
-  static Future<void> setMaxConsumersPerSubscription(int id, String host, int port, TlsContext tlsContext,
+  static Future<void> setMaxConsumersPerSubscription(String id, String host, int port, TlsContext tlsContext,
       String tenant, String namespace, int? maxConsumersPerSubscription) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     String url = '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace/maxConsumersPerSubscription';
@@ -165,7 +165,7 @@ class PulsarNamespaceApi {
     }
   }
 
-  static Future<void> setMaxUnackedMessagesPerConsumer(int id, String host, int port, TlsContext tlsContext,
+  static Future<void> setMaxUnackedMessagesPerConsumer(String id, String host, int port, TlsContext tlsContext,
       String tenant, String namespace, int? maxUnackedMessagesPerConsumer) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     String url =
@@ -178,7 +178,7 @@ class PulsarNamespaceApi {
     }
   }
 
-  static Future<void> setMaxUnackedMessagesPerSubscription(int id, String host, int port, TlsContext tlsContext,
+  static Future<void> setMaxUnackedMessagesPerSubscription(String id, String host, int port, TlsContext tlsContext,
       String tenant, String namespace, int? maxUnackedMessagesPerSubscription) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     String url =
@@ -191,8 +191,8 @@ class PulsarNamespaceApi {
     }
   }
 
-  static Future<void> setMaxSubscriptionsPerTopic(int id, String host, int port, TlsContext tlsContext, String tenant,
-      String namespace, int? maxSubscriptionsPerTopic) async {
+  static Future<void> setMaxSubscriptionsPerTopic(String id, String host, int port, TlsContext tlsContext,
+      String tenant, String namespace, int? maxSubscriptionsPerTopic) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     String url = '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace/maxSubscriptionsPerTopic';
     var response =
@@ -203,7 +203,7 @@ class PulsarNamespaceApi {
     }
   }
 
-  static Future<void> setMaxTopicsPerNamespace(int id, String host, int port, TlsContext tlsContext, String tenant,
+  static Future<void> setMaxTopicsPerNamespace(String id, String host, int port, TlsContext tlsContext, String tenant,
       String namespace, int? maxTopicsPerNamespace) async {
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     String url = '$protocol$host:${port.toString()}/admin/v2/namespaces/$tenant/$namespace/maxTopicsPerNamespace';

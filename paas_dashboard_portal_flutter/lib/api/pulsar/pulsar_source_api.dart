@@ -26,7 +26,7 @@ import 'package:paas_dashboard_portal_flutter/api/tls_context.dart';
 import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_source.dart';
 
 class PulsarSourceApi {
-  static Future<void> createSource(int id, String host, int port, TlsContext tlsContext, String tenant,
+  static Future<void> createSource(String id, String host, int port, TlsContext tlsContext, String tenant,
       String namespace, String sourceName, String outputTopic, String sourceType, String config) async {
     String url = tlsContext.enableTls
         ? HttpUtil.https
@@ -37,8 +37,8 @@ class PulsarSourceApi {
     await FlutterClipboard.copy(curlCommand);
   }
 
-  static Future<void> deleteSource(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String sourceName) async {
+  static Future<void> deleteSource(String id, String host, int port, TlsContext tlsContext, String tenant,
+      String namespace, String sourceName) async {
     var url = tlsContext.enableTls
         ? HttpUtil.https
         : '${HttpUtil.http}$host:${port.toString()}/admin/v3/sources/$tenant/$namespace/$sourceName';
@@ -50,7 +50,7 @@ class PulsarSourceApi {
   }
 
   static Future<List<SourceResp>> getSourceList(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace) async {
     var url = tlsContext.enableTls
         ? HttpUtil.https
         : '${HttpUtil.http}$host:${port.toString()}/admin/v3/sources/$tenant/$namespace';
@@ -63,8 +63,8 @@ class PulsarSourceApi {
     return jsonResponse.map((name) => SourceResp(name)).toList();
   }
 
-  static Future<SourceConfigResp> getSource(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String sourceName) async {
+  static Future<SourceConfigResp> getSource(String id, String host, int port, TlsContext tlsContext, String tenant,
+      String namespace, String sourceName) async {
     var url = tlsContext.enableTls
         ? HttpUtil.https
         : '${HttpUtil.http}$host:${port.toString()}/admin/v3/sources/$tenant/$namespace/$sourceName';

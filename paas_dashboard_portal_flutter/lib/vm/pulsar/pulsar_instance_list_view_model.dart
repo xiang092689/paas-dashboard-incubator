@@ -48,7 +48,7 @@ class PulsarInstanceListViewModel extends ChangeNotifier {
   }
 
   Future<void> updatePulsar(
-      int id,
+      String id,
       String name,
       String host,
       int port,
@@ -65,7 +65,7 @@ class PulsarInstanceListViewModel extends ChangeNotifier {
     fetchPulsarInstances();
   }
 
-  Future<void> deletePulsar(int id) async {
+  Future<void> deletePulsar(String id) async {
     PulsarInstanceApi.deletePulsar(id);
     fetchPulsarInstances();
   }

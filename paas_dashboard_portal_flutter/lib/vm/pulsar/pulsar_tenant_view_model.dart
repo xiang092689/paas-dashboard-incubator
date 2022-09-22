@@ -42,7 +42,7 @@ class PulsarTenantViewModel extends BaseLoadListPageViewModel<PulsarNamespaceVie
     return PulsarTenantViewModel(pulsarInstancePo.deepCopy(), tenantResp.deepCopy());
   }
 
-  int get id {
+  String get id {
     return pulsarInstancePo.id;
   }
 

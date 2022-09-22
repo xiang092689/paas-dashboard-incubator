@@ -35,7 +35,7 @@ class PulsarSinkListViewModel extends BaseLoadListPageViewModel<PulsarSinkViewMo
     return PulsarSinkListViewModel(pulsarInstancePo.deepCopy(), tenantResp.deepCopy(), namespaceResp.deepCopy());
   }
 
-  int get id {
+  String get id {
     return pulsarInstancePo.id;
   }
 

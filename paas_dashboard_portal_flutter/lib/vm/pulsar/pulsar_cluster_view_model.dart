@@ -30,7 +30,7 @@ class PulsarClusterViewModel extends BaseLoadListPageViewModel<ClusterResp> {
 
   PulsarClusterViewModel(this.pulsarInstancePo);
 
-  int get id {
+  String get id {
     return pulsarInstancePo.id;
   }
 

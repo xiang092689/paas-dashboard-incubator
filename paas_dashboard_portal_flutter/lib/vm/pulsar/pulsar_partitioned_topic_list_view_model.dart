@@ -36,7 +36,7 @@ class PulsarPartitionedTopicListViewModel extends BaseLoadListPageViewModel<Puls
         pulsarInstancePo.deepCopy(), tenantResp.deepCopy(), namespaceResp.deepCopy());
   }
 
-  int get id {
+  String get id {
     return pulsarInstancePo.id;
   }
 

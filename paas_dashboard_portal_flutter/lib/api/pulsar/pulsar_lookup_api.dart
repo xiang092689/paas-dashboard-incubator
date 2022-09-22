@@ -24,7 +24,7 @@ import 'package:paas_dashboard_portal_flutter/api/tls_context.dart';
 
 class PulsarLookupApi {
   static Future<String> lookupTopic(
-      int id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
+      String id, String host, int port, TlsContext tlsContext, String tenant, String namespace, String topic) async {
     var url = tlsContext.enableTls
         ? HttpUtil.https
         : '${HttpUtil.http}$host:${port.toString()}/lookup/v2/topic/persistent/$tenant/$namespace/$topic';

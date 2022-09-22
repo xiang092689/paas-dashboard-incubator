@@ -35,7 +35,7 @@ class PulsarNamespaceViewModel extends BaseLoadListPageViewModel<PulsarPartition
     return PulsarNamespaceViewModel(pulsarInstancePo.deepCopy(), tenantResp.deepCopy(), namespaceResp.deepCopy());
   }
 
-  int get id {
+  String get id {
     return pulsarInstancePo.id;
   }
 

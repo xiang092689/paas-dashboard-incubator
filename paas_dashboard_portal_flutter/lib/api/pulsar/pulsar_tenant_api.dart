@@ -28,7 +28,7 @@ import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_tenant.dart';
 import 'package:http/http.dart' as http;
 
 class PulsarTenantApi {
-  static Future<void> createTenant(int id, String host, int port, TlsContext tlsContext, String tenant) async {
+  static Future<void> createTenant(String id, String host, int port, TlsContext tlsContext, String tenant) async {
     var url = Uri.parse('${UrlConst.Host}${UrlConst.PulsarCreate}');
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     var response = await http.post(url,
@@ -40,7 +40,7 @@ class PulsarTenantApi {
     }
   }
 
-  static Future<void> deleteTenant(int id, String host, int port, TlsContext tlsContext, String tenant) async {
+  static Future<void> deleteTenant(String id, String host, int port, TlsContext tlsContext, String tenant) async {
     var url = Uri.parse('${UrlConst.Host}${UrlConst.PulsarDelete}');
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     var response = await http.post(url,
@@ -52,7 +52,7 @@ class PulsarTenantApi {
     }
   }
 
-  static Future<List<TenantResp>> getTenants(int id, String host, int port, TlsContext tlsContext) async {
+  static Future<List<TenantResp>> getTenants(String id, String host, int port, TlsContext tlsContext) async {
     var url = Uri.parse('${UrlConst.Host}${UrlConst.PulsarFetchTenants}');
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     var response = await http.post(url,
@@ -66,7 +66,7 @@ class PulsarTenantApi {
     return jsonResponse.map((name) => TenantResp.fromJson(name)).toList();
   }
 
-  static Future<String> getTenantInfo(int id, String host, int port, String tenant, TlsContext tlsContext) async {
+  static Future<String> getTenantInfo(String id, String host, int port, String tenant, TlsContext tlsContext) async {
     var url = Uri.parse('${UrlConst.Host}${UrlConst.PulsarGetTenantInfo}?tenantName=$tenant');
     String protocol = tlsContext.enableTls ? HttpUtil.https : HttpUtil.http;
     var response = await http.post(url,

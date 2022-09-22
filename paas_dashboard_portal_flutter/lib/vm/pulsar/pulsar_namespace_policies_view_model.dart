@@ -70,7 +70,7 @@ class PulsarNamespacePoliciesViewModel extends BaseLoadViewModel {
     notifyListeners();
   }
 
-  int get id {
+  String get id {
     return pulsarInstancePo.id;
   }
 

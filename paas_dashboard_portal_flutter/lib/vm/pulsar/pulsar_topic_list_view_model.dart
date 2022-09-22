@@ -35,7 +35,7 @@ class PulsarTopicListViewModel extends BaseLoadListPageViewModel<PulsarTopicView
     return PulsarTopicListViewModel(pulsarInstancePo.deepCopy(), tenantResp.deepCopy(), namespaceResp.deepCopy());
   }
 
-  int get id {
+  String get id {
     return pulsarInstancePo.id;
   }
 

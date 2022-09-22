@@ -27,7 +27,7 @@ import 'package:paas_dashboard_portal_flutter/api/tls_context.dart';
 import 'package:paas_dashboard_portal_flutter/module/pulsar/pulsar_cluster.dart';
 
 class PulsarClusterApi {
-  static Future<List<ClusterResp>> cluster(int id, String host, int port, TlsContext tlsContext) async {
+  static Future<List<ClusterResp>> cluster(String id, String host, int port, TlsContext tlsContext) async {
     String version = await getVersion(id, host, port, tlsContext);
     String tenantInfo = await PulsarTenantApi.getTenantInfo(id, host, port, "public", tlsContext);
     String cluster = ((json.decode(tenantInfo) as Map)["allowedClusters"] as List)[0];
@@ -42,7 +42,7 @@ class PulsarClusterApi {
     return brokers.map((e) => ClusterResp(e, version)).toList();
   }
 
-  static Future<String> getVersion(int id, String host, int port, TlsContext tlsContext) async {
+  static Future<String> getVersion(String id, String host, int port, TlsContext tlsContext) async {
     String url =
         tlsContext.enableTls ? HttpUtil.https : '${HttpUtil.http}$host:${port.toString()}/admin/v2/brokers/version';
     final versionResponse = await HttpUtil.getClient(tlsContext, SERVER.PULSAR, id)
@@ -54,7 +54,7 @@ class PulsarClusterApi {
     return versionResponse.data!;
   }
 
-  static Future<String> getLeader(int id, String host, int port, TlsContext tlsContext) async {
+  static Future<String> getLeader(String id, String host, int port, TlsContext tlsContext) async {
     String url = tlsContext.enableTls
         ? HttpUtil.https
         : '${HttpUtil.http}$host:${port.toString()}/admin/v2/brokers/leaderBroker';

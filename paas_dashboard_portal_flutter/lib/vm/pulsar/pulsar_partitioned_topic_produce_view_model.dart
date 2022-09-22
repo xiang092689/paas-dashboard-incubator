@@ -32,7 +32,7 @@ class PulsarPartitionedTopicProduceViewModel extends BaseLoadListViewModel {
 
   PulsarPartitionedTopicProduceViewModel(this.pulsarInstancePo, this.tenantResp, this.namespaceResp, this.topicResp);
 
-  int get id {
+  String get id {
     return pulsarInstancePo.id;
   }
 

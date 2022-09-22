@@ -29,9 +29,9 @@ class HttpUtil {
   static const String https = "https://";
   static const int connectTimeout = 10000;
   static const int receiveTimeout = 10000;
-  static Map<SERVER, Map<int, Dio>> clients = {};
+  static Map<SERVER, Map<String, Dio>> clients = {};
 
-  static Dio getClient(TlsContext tlsContext, SERVER service, int id) {
+  static Dio getClient(TlsContext tlsContext, SERVER service, String id) {
     clients.putIfAbsent(service, () => HashMap.identity());
     clients[service]!.putIfAbsent(id, () => createClient(tlsContext));
     return clients[service]![id]!;
@@ -65,7 +65,7 @@ class HttpUtil {
     return client;
   }
 
-  static remove(SERVER service, int id) {
+  static remove(SERVER service, String id) {
     if (clients[service] != null && clients[service]!.containsKey(id)) {
       clients[service]!.remove(id);
     }

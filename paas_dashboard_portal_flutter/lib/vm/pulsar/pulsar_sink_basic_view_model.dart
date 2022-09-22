@@ -40,7 +40,7 @@ class PulsarSinkBasicViewModel extends BaseLoadViewModel {
         pulsarInstancePo.deepCopy(), tenantResp.deepCopy(), namespaceResp.deepCopy(), sinkResp.deepCopy());
   }
 
-  int get id {
+  String get id {
     return pulsarInstancePo.id;
   }
 

@@ -20,7 +20,7 @@
 import 'package:paas_dashboard_portal_flutter/api/tls_context.dart';
 
 class PulsarInstanceDto {
-  final int id;
+  final String id;
   final String name;
   final String host;
   final int port;

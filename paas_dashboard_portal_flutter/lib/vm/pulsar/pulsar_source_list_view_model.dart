@@ -35,7 +35,7 @@ class PulsarSourceListViewModel extends BaseLoadListPageViewModel<PulsarSourceVi
     return PulsarSourceListViewModel(pulsarInstancePo.deepCopy(), tenantResp.deepCopy(), namespaceResp.deepCopy());
   }
 
-  int get id {
+  String get id {
     return pulsarInstancePo.id;
   }
 

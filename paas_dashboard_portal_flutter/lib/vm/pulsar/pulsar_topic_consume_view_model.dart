@@ -36,7 +36,7 @@ class PulsarTopicConsumeViewModel extends BaseLoadListViewModel<ConsumerResp> {
 
   PulsarTopicConsumeViewModel(this.pulsarInstancePo, this.tenantResp, this.namespaceResp, this.topicResp);
 
-  int get id {
+  String get id {
     return pulsarInstancePo.id;
   }
 
